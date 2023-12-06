@@ -1,4 +1,3 @@
-
 version: "3.8"
 services:
   backend-flask:
@@ -10,11 +9,6 @@ services:
       - "4567:4567"
     volumes:
       - ./backend-flask:/backend-flask
-    networks:
-      - internal-network
-    depends_on:
-      - db
-
   frontend-react-js:
     environment:
       REACT_APP_BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
@@ -23,12 +17,9 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend-react-js:/frontend-react-js
-    networks:
-      - internal-network
-    depends_on:
-      - db
-
   dynamodb-local:
+    # https://stackoverflow.com/questions/67533058/persist-local-dynamodb-data-in-volumes-lack-permission-unable-to-open-databa
+    # We needed to add user:root to get this working.
     user: root
     command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
     image: "amazon/dynamodb-local:latest"
@@ -38,11 +29,8 @@ services:
     volumes:
       - "./docker/dynamodb:/home/dynamodblocal/data"
     working_dir: /home/dynamodblocal
-    networks:
-      - internal-network
-
   db:
-    image: postgres:14.10-alpine3.18
+    image: postgres:16.1
     restart: always
     environment:
       - POSTGRES_USER=postgres
@@ -50,10 +38,8 @@ services:
       - POSTGRES_DB=mydatabase
     ports:
       - "5432:5432"
-    volumes:
+    volumes: 
       - db:/var/lib/postgresql/data
-    networks:
-      - internal-network
 
 # the name flag is a hack to change the default prepend folder
 # name when outputting the image names
@@ -61,7 +47,7 @@ networks:
   internal-network:
     driver: bridge
     name: cruddur
-
+    
 volumes:
   db:
     driver: local
