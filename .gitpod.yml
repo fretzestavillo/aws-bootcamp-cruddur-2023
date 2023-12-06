@@ -10,7 +10,7 @@ tasks:
       cd $THEIA_WORKSPACE_ROOT
   - name: postgres
     init: |
-      RUN sudo apt-get update \
+      sudo apt-get update \
       && sudo apt install postgresql-client
 
 
