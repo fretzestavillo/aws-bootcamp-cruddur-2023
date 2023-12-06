@@ -11,13 +11,14 @@ tasks:
   - name: postgres
     init: |
       RUN sudo apt-get update \
-      && sudo apt-get install -y postgresql-client
+      && sudo apt install postgresql-client
+
 
 
 vscode:
   extensions:
     - 42Crunch.vscode-openapi
-   
+    - mtxr.sqltools-driver-pg
 
 
 
