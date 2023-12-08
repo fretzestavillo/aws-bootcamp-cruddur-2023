@@ -30,7 +30,6 @@ services:
       AWS_REGION: "us-east-1"
     command:
       - "xray -o -n us-east-1"
-       
     ports:
       - 2000:2000/udp
       - 2000:2000/tcp
