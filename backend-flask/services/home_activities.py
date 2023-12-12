@@ -1,14 +1,12 @@
 from datetime import datetime, timedelta, timezone
-from opentelemetry import trace 
-import logging 
+from opentelemetry import trace
 
 tracer = trace.get_tracer("home.activities")
 
 class HomeActivities:
-  def run(logger):
-    #def run(logger):
+  def run():
     #logger.info("HomeActivities")
-    with tracer.start_as_current_span("home-activities-mock-data"):
+    with tracer.start_as_current_span("home-activites-mock-data"):
       span = trace.get_current_span()
       now = datetime.now(timezone.utc).astimezone()
       span.set_attribute("app.now", now.isoformat())
@@ -51,5 +49,5 @@ class HomeActivities:
         'replies': []
       }
       ]
-      span.set_attribute("app.result_lenght", len(results))
-      return results  
+      span.set_attribute("app.result_length", len(results))
+      return results
