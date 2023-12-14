@@ -7,7 +7,7 @@ tasks:
       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
       unzip awscliv2.zip
       sudo ./aws/install
-      cd $THEIA_WORKSPACE_ROOT
+      cd $cd 
 
   - name: postgres
     init: |
@@ -20,10 +20,7 @@ tasks:
       cd frontend-react-js
       npm i
 
-  - name: build docker and run
-    init: |
-      cd ..
-      docker compose -f "docker-compose.yml" up -d --build
+ 
 
 vscode:
   extensions:
