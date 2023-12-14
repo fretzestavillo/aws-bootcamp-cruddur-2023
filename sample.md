@@ -1,5 +1,3 @@
-export HONEYCOMB_API_KEY="I60z1DhnrrdixwFKKexXdE"
-gp env HONEYCOMB_API_KEY='I60z1DhnrrdixwFKKexXdE'
 
 export HONEYCOMB_SERVICE_NAME="Cruddur"
 gp env HONEYCOMB_SERVICE_NAME="Cruddur"
@@ -16,3 +14,10 @@ opentelemetry-sdk
 opentelemetry-exporter-otlp-proto-http 
 opentelemetry-instrumentation-flask 
 opentelemetry-instrumentation-requests
+
+
+
+REACT_AWS_PROJECT_REGION=
+REACT_APP_AWS_COGNITO_REGION=
+REACT_APP_AWS_USER_POOLS_ID=us-east-1_5qTPa06DX
+REACT_APP_CLIENT_ID=48gjkqr1iv36skj5b6d1t3pdb5
